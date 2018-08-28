@@ -49,25 +49,16 @@ public class FirstTest {
         );
 
         String  actual = element_to_enter_search_line.getText();
-        System.out.println(actual);
         String expected = "Search…";
 
-
-        if ("Search…" == actual)
+        if (expected.equals(actual))
         {
-            WebElement element_to_init_search1 = (WebElement) driver.findElementsByXPath("//*[contains(@text, 'Search Wikipedia')]");
+            WebElement element_to_init_search1 = (WebElement) driver.findElementByXPath("//*[contains(@text, 'Search Wikipedia')]");
             element_to_init_search1.sendKeys("Java");
 
         } else {
-            Assert.fail("asdasdasd");
+            Assert.fail("Test failed. Text is not equal.");
         }
-
-//        Assert.assertTrue("qew", false);
-               // .assertEquals(expected, "Search...");
-
-
-
-//        element_to_enter_search_line.sendKeys("Java");
 
     }
 
