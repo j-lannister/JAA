@@ -1,6 +1,7 @@
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -21,7 +22,7 @@ public class FirstTest {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName","Android");
         capabilities.setCapability("deviceName","AndroidTestDevice"); // for IOS should be exactly the same
-        capabilities.setCapability("platformVersion","6.0");
+        capabilities.setCapability("platformVersion","8.0");
         capabilities.setCapability("automationName","Appium");
         capabilities.setCapability("appPackage","org.wikipedia");
         capabilities.setCapability("appActivity",".main.MainActivity");
@@ -47,7 +48,26 @@ public class FirstTest {
                 "Cannot find search input"
         );
 
-        element_to_enter_search_line.sendKeys("Java");
+        String  actual = element_to_enter_search_line.getText();
+        System.out.println(actual);
+        String expected = "Search…";
+
+
+        if ("Search…" == actual)
+        {
+            WebElement element_to_init_search1 = (WebElement) driver.findElementsByXPath("//*[contains(@text, 'Search Wikipedia')]");
+            element_to_init_search1.sendKeys("Java");
+
+        } else {
+            Assert.fail("asdasdasd");
+        }
+
+//        Assert.assertTrue("qew", false);
+               // .assertEquals(expected, "Search...");
+
+
+
+//        element_to_enter_search_line.sendKeys("Java");
 
     }
 
